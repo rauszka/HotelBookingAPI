@@ -1,4 +1,5 @@
 
+using HotelBookingAPI.Controllers;
 using Microsoft.OpenApi.Models;
 
 namespace HotelBookingAPI
@@ -10,7 +11,7 @@ namespace HotelBookingAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddScoped<IRoomService, RoomService>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

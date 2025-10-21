@@ -4,6 +4,7 @@ namespace HotelBookingAPI.Controllers
 {
     public interface IRoomService
     {
+        List<Room> GetAllRooms();
         Room? AddRoom(string name);
         Booking BookRoom(int roomId, string guestName, DateTime fromDate, DateTime toDate);
         IEnumerable<Room> GetAvailableRooms(DateTime fromDate, DateTime toDate);

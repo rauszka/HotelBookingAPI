@@ -14,6 +14,21 @@ namespace HotelBookingAPI.Controllers
         }
 
         /// <summary>
+        /// Get all rooms
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetAllRooms()
+        {
+            var rooms = _roomService.GetAllRooms();
+
+            if (rooms == null || !rooms.Any())
+                return NotFound(new { error = "No rooms found." });
+
+            return Ok(rooms);
+        }
+
+        /// <summary>
         /// Create a new room
         /// </summary>
         /// <param name="request"></param>

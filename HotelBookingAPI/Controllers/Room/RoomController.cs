@@ -35,12 +35,12 @@ namespace HotelBookingAPI.Controllers.Room
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddRoom([FromBody] string request)
+        public IActionResult AddRoom([FromBody] CreateRoomRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request))
+            if (string.IsNullOrWhiteSpace(request.Name))
                 return BadRequest(new { error = "Room name is required." });
 
-            var room = _roomService.AddRoom(request);
+            var room = _roomService.AddRoom(request.Name);
             if (room == null)
                 return Conflict(new { error = "Room with this name already exists." });
 
@@ -72,7 +72,7 @@ namespace HotelBookingAPI.Controllers.Room
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("{roomId}/bookings")]
-        public ActionResult<Models.Booking> BookRoom(Guid roomId, [FromBody] CreateBookingRequest request)
+        public ActionResult<Models.Booking> BookRoom(int roomId, [FromBody] CreateBookingRequest request)
         {
             if (request.FromDate >= request.ToDate)
                 return BadRequest("fromDate must be earlier than toDate.");
@@ -105,7 +105,7 @@ namespace HotelBookingAPI.Controllers.Room
         /// <param name="roomId"></param>
         /// <returns></returns>
         [HttpGet("{roomId}/bookings")]
-        public ActionResult<IEnumerable<Models.Booking>> GetBookings(Guid roomId)
+        public ActionResult<IEnumerable<Models.Booking>> GetBookings(int roomId)
         {
             var room = _roomService.GetById(roomId);
             if (room == null)

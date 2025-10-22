@@ -6,7 +6,7 @@ namespace HotelBookingAPI.Repositorys
     {
         IEnumerable<Room> GetAll();
         Room Add(string name);
-        Room? GetById(Guid id);
+        Room? GetById(int id);
     }
 
 }

@@ -23,7 +23,7 @@ namespace HotelBookingAPI.Controllers.Room
             return _roomRepository.GetAll();
         }
 
-        public Models.Room? GetById(Guid roomId)
+        public Models.Room? GetById(int roomId)
         {
             var room = _roomRepository.GetById(roomId);
             if (room == null)
@@ -52,7 +52,7 @@ namespace HotelBookingAPI.Controllers.Room
             return availableRooms;
         }
 
-        public Models.Booking BookRoom(Guid roomId, string guestName, DateTime fromDate, DateTime toDate)
+        public Models.Booking BookRoom(int roomId, string guestName, DateTime fromDate, DateTime toDate)
         {
             var room = _roomRepository.GetById(roomId);
             if (room == null)
@@ -73,7 +73,6 @@ namespace HotelBookingAPI.Controllers.Room
 
             var booking = new Models.Booking
             {
-                Id = Guid.NewGuid(),
                 RoomId = roomId,
                 GuestName = guestName,
                 FromDate = fromDate,
@@ -89,7 +88,7 @@ namespace HotelBookingAPI.Controllers.Room
             return bookingFrom < requestedTo && bookingTo > requestedFrom;
         }
 
-        public IEnumerable<Models.Booking> GetBookings(Guid roomId)
+        public IEnumerable<Models.Booking> GetBookings(int roomId)
         {
             return _bookingRepository.GetBookingsFor(roomId);
         }

@@ -1,4 +1,3 @@
-using HotelBookingAPI.Controllers.Booking;
 using HotelBookingAPI.Controllers.Room;
 using HotelBookingAPI.Repositorys;
 using Microsoft.OpenApi.Models;

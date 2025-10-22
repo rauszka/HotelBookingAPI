@@ -5,6 +5,7 @@ namespace HotelBookingAPI.Repositorys
     public class InMemoryRoomRepository : IRoomRepository
     {
         private readonly List<Room> _rooms = new();
+        private int _nextId = 1;
         
         public IEnumerable<Room> GetAll() => _rooms;
 
@@ -15,7 +16,7 @@ namespace HotelBookingAPI.Repositorys
 
             var room = new Room
             {
-                Id = Guid.NewGuid(),
+                Id = _nextId++,
                 Name = name
             };
 
@@ -23,7 +24,7 @@ namespace HotelBookingAPI.Repositorys
             return room;
         }
 
-        public Room? GetById(Guid id)
+        public Room? GetById(int id)
         {
             return _rooms.FirstOrDefault(r => r.Id == id);
         }

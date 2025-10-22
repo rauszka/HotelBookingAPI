@@ -55,7 +55,7 @@ It supports:
 ### 1. Clone the repo
 
 <pre><code class="bash">
-git clone <repo-url>
+git clone https://github.com/rauszka/HotelBookingAPI
 cd HotelBookingAPI
 </code></pre>
 

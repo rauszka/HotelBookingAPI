@@ -1,5 +1,6 @@
-
-using HotelBookingAPI.Controllers;
+using HotelBookingAPI.Controllers.Booking;
+using HotelBookingAPI.Controllers.Room;
+using HotelBookingAPI.Repositorys;
 using Microsoft.OpenApi.Models;
 
 namespace HotelBookingAPI
@@ -11,7 +12,10 @@ namespace HotelBookingAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSingleton<IRoomRepository, InMemoryRoomRepository>();
+            builder.Services.AddSingleton<IBookingRepository, InMemoryBookingRepository>();
             builder.Services.AddScoped<IRoomService, RoomService>();
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -34,11 +38,14 @@ namespace HotelBookingAPI
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
+
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Booking API");
-                    options.RoutePrefix = string.Empty;
+                    options.RoutePrefix = "swagger";
                 });
             }
 

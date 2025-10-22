@@ -80,7 +80,7 @@ dotnet run
 ### 5. Open Swagger UI in Development
 
 <pre><code class="arduino">
-http://localhost:5276/
+http://localhost:5276/swagger
 </code></pre>
 
 > Swagger provides interactive API documentation and allows testing endpoints.

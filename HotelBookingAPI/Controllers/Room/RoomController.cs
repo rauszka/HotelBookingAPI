@@ -44,7 +44,7 @@ namespace HotelBookingAPI.Controllers.Room
             if (room == null)
                 return Conflict(new { error = "Room with this name already exists." });
 
-            return Created();
+            return Created(string.Empty,room);
         }
 
         /// <summary>
